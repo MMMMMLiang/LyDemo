@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Location</string>
+    <string name="app_location">我是定位模块的Fragment入口</string>
+    <string name="app_location_alone">我是独立定位模块的Activity入口</string>
+</resources>

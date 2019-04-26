@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Message</string>
+    <string name="app_message">我是消息模块的Fragment入口</string>
+    <string name="app_message_alone">我是独立消息模块的Activity入口</string>
+</resources>

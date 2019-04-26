@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Track</string>
+    <string name="app_track">我是线索模块的Fragment入口</string>
+    <string name="app_track_alone">我是独立线索模块的Activity入口</string>
+</resources>

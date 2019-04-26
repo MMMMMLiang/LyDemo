@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Mine</string>
+    <string name="app_mine">我是我的模块的Fragment入口</string>
+    <string name="app_mine_alone">我是独立我的模块的Activity入口</string>
+</resources>
