@@ -3,8 +3,8 @@ project.dependencies.add('api', "com.billy.android:cc:2.1.5")
 
 dependencies {
     implementation project(':baselib')
-    implementation 'com.sun.lib:net:1.0.2'
-    implementation 'com.sun.view.weight:weight:1.0.0'
+    implementation 'androidx.appcompat:appcompat:1.1.0-alpha04'
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
 }
 
 //此文件是作为组件化配置的公共gradle脚本文件，在每个组件中都apply此文件，下载到工程根目录后，可以在下方添加一些自己工程中通用的配置

@@ -2,4 +2,7 @@
     <string name="app_name">Mine</string>
     <string name="app_mine">我是我的模块的Fragment入口</string>
     <string name="app_mine_alone">我是独立我的模块的Activity入口</string>
+    <string name="app_mine_login">登录</string>
+    <string name="a_login_user">用户名</string>
+    <string name="a_login_pswd">密  码</string>
 </resources>
