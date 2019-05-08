@@ -4,6 +4,7 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
@@ -17,6 +18,8 @@ import android.widget.Toast;
 import com.billy.cc.core.component.CC;
 import com.billy.cc.core.component.CCResult;
 import com.billy.cc.core.component.IComponentCallback;
+import com.sun.lib.photo.select.EasyPhotos;
+import com.sun.ly.baselib.image.GlideEngine;
 import com.sun.ly.demo.anim.KickBackAnimator;
 import com.sun.view.weight.weight.constant.NaAnim;
 import com.sun.view.weight.weight.listener.OnTabClickListener;
@@ -26,6 +29,7 @@ import com.sun.view.weight.weight.view.BottomNavigationBar;
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
@@ -40,7 +44,8 @@ public class MainActivity extends AppCompatActivity {
 
     private String[] tabText = {"首页", "消息", "", "定位", "我的"};
 
-    private int[] normalIcon = {R.drawable.home, R.drawable.message, R.drawable.add_hover, R.drawable.location, R.drawable.mine};
+    private int[] normalIcon = {R.drawable.home, R.drawable.message, R.drawable.add_hover,
+            R.drawable.location, R.drawable.mine};
 
     private int[] selectIcon = {R.drawable.home_hover, R.drawable.message_hover,
             R.drawable.add_hover, R.drawable.location_hover, R.drawable.mine_hover};
@@ -265,12 +270,14 @@ public class MainActivity extends AppCompatActivity {
                     closeAnimation();
                     break;
                 case 1:
-                    Toast.makeText(MainActivity.this, "拍照", Toast.LENGTH_SHORT).show();
-                    closeAnimation();
+                    EasyPhotos.createCamera(MainActivity.this)
+                            .setFileProviderAuthority("com.sun.ly.demo.provider")
+                            .start(102);
                     break;
                 case 2:
-                    Toast.makeText(MainActivity.this, "相册", Toast.LENGTH_SHORT).show();
-                    closeAnimation();
+                    EasyPhotos.createAlbum(MainActivity.this, true, GlideEngine.getInstance())
+                            .setFileProviderAuthority("com.sun.ly.demo.provider")
+                            .start(101);
                     break;
                 case 3:
                     Toast.makeText(MainActivity.this, "直播", Toast.LENGTH_SHORT).show();
@@ -308,5 +315,21 @@ public class MainActivity extends AppCompatActivity {
                         });
             }
         });
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 101) {
+            if (resultCode == RESULT_OK) {
+                String imgUrl = data.getStringArrayListExtra(EasyPhotos.RESULT_PATHS).get(0);
+                Toast.makeText(MainActivity.this,imgUrl, Toast.LENGTH_SHORT).show();
+                closeAnimation();
+            }
+        }else if (requestCode == 102){
+            String imgUrl = data.getStringArrayListExtra(EasyPhotos.RESULT_PATHS).get(0);
+            Toast.makeText(MainActivity.this,imgUrl, Toast.LENGTH_SHORT).show();
+            closeAnimation();
+        }
     }
 }
