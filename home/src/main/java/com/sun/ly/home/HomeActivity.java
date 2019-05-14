@@ -7,6 +7,7 @@ import android.widget.TextView;
 import com.billy.cc.core.component.CC;
 import com.billy.cc.core.component.CCResult;
 import com.billy.cc.core.component.CCUtil;
+import com.sun.ly.baselib.component.ComponentKey;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -26,7 +27,7 @@ public class HomeActivity extends AppCompatActivity {
 
         Bundle bundle = getIntent().getExtras();
         if (bundle != null){
-            idStr = getIntent().getExtras().getString(CCUtil.EXTRA_KEY_CALL_ID, "");
+            idStr = bundle.getString(CCUtil.EXTRA_KEY_CALL_ID, "");
         }
 
         textView = findViewById(R.id.home_text);
@@ -34,7 +35,7 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 CCResult result = new CCResult();
-                result.addData("back_str", "Hello CC");
+                result.addData(ComponentKey.KEY_HOME_GET_BACK_NAME, "Hello CC");
                 CC.sendCCResult(idStr, result);
                 finish();
             }
